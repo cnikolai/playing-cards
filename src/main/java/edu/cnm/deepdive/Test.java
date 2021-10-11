@@ -28,19 +28,13 @@ public class Test {
     Collections.sort(deck); // or deck.sort(deck, null)
     System.out.println(deck);
     //sort in war order, use WarComparator as referee
-    deck.sort(new WarComparator());
-    System.out.println(deck);
-  }
-
-  private static class WarComparator implements Comparator<Card> {
-
-    private final int numRanks = Rank.values().length;
-
+    //now use an anonymous class, create and implement the interface.
+    //if interface has exactly 1 unimplemented method, can write as a lambda, but can't have a field
+    int numRanks = Rank.values().length;
     //could do some math: add 12 to ordinal enum, then mod 13. always sort smaller member before larger one
-    @Override
-    public int compare(Card card1, Card card2) {
-      return (card1.getRank().ordinal() + numRanks-1) % numRanks - (card2.getRank().ordinal() + numRanks-1) % numRanks;
-    }
+    deck.sort((card1, card2) ->
+        (card1.getRank().ordinal() + numRanks-1) % numRanks - (card2.getRank().ordinal() + numRanks-1) % numRanks);
+    System.out.println(deck);
   }
 
 }
