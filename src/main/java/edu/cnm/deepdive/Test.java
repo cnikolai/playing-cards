@@ -18,9 +18,16 @@ public class Test {
         deck.add(card);
       }
     }
+    //print out the natural order of the cards
     System.out.println(deck);
+    //shuffle the deck
     Collections.shuffle(deck, new SecureRandom());
     System.out.println(deck);
+    //sort the deck
+    Collections.sort(deck); // or List.sort(deck, null)
+    System.out.println(deck);
   }
+
+
 
 }
