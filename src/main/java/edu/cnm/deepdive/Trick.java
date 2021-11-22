@@ -23,10 +23,12 @@ public class Trick {
     sortCards(deck, redPile, blackPile);
     // Swap a random number of cards between the 2 piles, take from the smaller of the two piles.
     swapCards(redPile,blackPile,rng);
-    // TODO: Sort the piles.
-
-    // TODO: Count the number of pile contents.
-
+    // Sort the piles.
+    Collections.sort(redPile);
+    Collections.sort(blackPile);
+    // Count the number of pile contents.
+    printContents(redPile, Color.RED);
+    printContents(blackPile, Color.BLACK);
   }
 
   private static List<Card> getDeck(Random rng) {
@@ -42,7 +44,7 @@ public class Trick {
   }
 
   private static void sortCards(List<Card> deck, List<Card> redPile, List<Card> blackPile) {
-    for (Iterator<Card> iter = deck.iterator(); deck.iterator().hasNext();) {
+    for (Iterator<Card> iter = deck.iterator(); iter.hasNext();) {
       Card selector = iter.next();
       Card card = iter.next();
       if (selector.getSuit().getColor() == Color.RED) {
@@ -59,6 +61,16 @@ public class Trick {
       blackPile.add(redPile.remove(0)); //adds to end/bottom of the pile
       redPile.add(blackPile.remove(0));
     }
+  }
+
+  private static void printContents(List<Card> pile, Color color) {
+    int colorCount = 0;
+    for (Card card : pile) {
+      if (card.getSuit().getColor() == color) {
+        colorCount++;
+      }
+    }
+    System.out.printf("%1$s pile contains %2$d %1$s cards: %3$s%n", color, colorCount, pile);
   }
 
 }
