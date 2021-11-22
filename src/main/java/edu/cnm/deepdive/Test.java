@@ -32,6 +32,7 @@ public class Test {
     //if interface has exactly 1 unimplemented method, can write as a lambda, but can't have a field
     int numRanks = Rank.values().length;
     //could do some math: add 12 to ordinal enum, then mod 13. always sort smaller member before larger one
+    //use lambdas for consumers and suppliers and for runnable and for ...
     deck.sort((card1, card2) ->
         (card1.getRank().ordinal() + numRanks-1) % numRanks - (card2.getRank().ordinal() + numRanks-1) % numRanks);
     System.out.println(deck);
